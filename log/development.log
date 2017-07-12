@@ -1,0 +1,432 @@
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (147.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (95.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateLocations (20170711005317)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "locations" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "latitude" float, "longitude" float, "address" varchar, "description" text, "title" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170711005317"]]
+  [1m[35m (144.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-07-11 00:57:47.921179"], ["updated_at", "2017-07-11 00:57:47.921179"]]
+  [1m[35m (95.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2017-07-10 20:29:50 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering C:/RailsInstaller/Ruby2.3.0/lib/ruby/gems/2.3.0/gems/railties-5.1.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/RailsInstaller/Ruby2.3.0/lib/ruby/gems/2.3.0/gems/railties-5.1.2/lib/rails/templates/rails/welcome/index.html.erb (8.0ms)
+Completed 200 OK in 238ms (Views: 112.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 20:30:05 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (12.0ms)
+Completed 500 Internal Server Error in 2271ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (TypeError: El objeto no acepta esta propiedad o método):
+    4:     <title>Geoloca</title>
+    5:     <%= csrf_meta_tags %>
+    6: 
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    9:   </head>
+   10: 
+  
+app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb__372630572_55048524'
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 20:32:52 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 321ms (Views: 281.9ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:10:18 -0500
+  
+NameError (undefined local variable or method `index' for #<ActionDispatch::Routing::Mapper:0x669af50>):
+  
+config/routes.rb:3:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:11:22 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 272ms (Views: 223.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2017-07-10 21:13:59 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (137.5ms)
+  Rendered locations/new.html.erb within layouts/application (168.8ms)
+Completed 200 OK in 424ms (Views: 348.0ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2017-07-10 21:16:10 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5nyEVPIIiRj8umJCBp1AF8KA+TyHFxvqqx6JFZelpprLO/l/uFzbFfEQdwqPOehjGLvWtEfpYDigIutBffLz0Q==", "location"=>{"latitude"=>"21.1591122", "longitude"=>"-100.9665343", "address"=>"Dolores Hidalgo", "description"=>"Lugar donde se dio el Grito de Independencia", "title"=>"Dolores Hgo"}, "commit"=>"Create Location"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "locations" ("latitude", "longitude", "address", "description", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["latitude", 21.1591122], ["longitude", -100.9665343], ["address", "Dolores Hidalgo"], ["description", "Lugar donde se dio el Grito de Independencia"], ["title", "Dolores Hgo"], ["created_at", "2017-07-11 02:16:11.004895"], ["updated_at", "2017-07-11 02:16:11.004895"]]
+  [1m[35m (156.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/locations/1
+Completed 302 Found in 192ms (ActiveRecord: 156.0ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2017-07-10 21:16:11 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 260ms (Views: 179.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:17:27 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 236ms (Views: 192.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2017-07-10 21:18:43 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (8.0ms)
+  Rendered locations/new.html.erb within layouts/application (50.1ms)
+Completed 200 OK in 254ms (Views: 208.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2017-07-10 21:21:00 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rJTpjp8ITgGdi+zu+9DhAO6BLNO3buHMtwiqJ8KHMzaB05Sl1VwcDJAh+aZydEl0NLoDW3eQmh68NMhzKNBmfQ==", "location"=>{"latitude"=>"21.1576992", "longitude"=>"-100.9374476", "address"=>"Centro 37800 Dolores Hidalgo Cuna de la Independencia Nacional, Gto.", "description"=>"Casa de visitas, conocerás muchas cosas", "title"=>"Casa de visitas, Dolores Hgo."}, "commit"=>"Create Location"}
+  [1m[35m (4.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "locations" ("latitude", "longitude", "address", "description", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["latitude", 21.1576992], ["longitude", -100.9374476], ["address", "Centro 37800 Dolores Hidalgo Cuna de la Independencia Nacional, Gto."], ["description", "Casa de visitas, conocerás muchas cosas"], ["title", "Casa de visitas, Dolores Hgo."], ["created_at", "2017-07-11 02:21:00.955075"], ["updated_at", "2017-07-11 02:21:00.955075"]]
+  [1m[35m (108.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/locations/2
+Completed 302 Found in 144ms (ActiveRecord: 116.0ms)
+
+
+Started GET "/locations/2" for 127.0.0.1 at 2017-07-10 21:21:01 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 243ms (Views: 188.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:21:48 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 280ms (Views: 226.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/new" for 127.0.0.1 at 2017-07-10 21:21:59 -0500
+Processing by LocationsController#new as HTML
+  Rendering locations/new.html.erb within layouts/application
+  Rendered locations/_form.html.erb (4.5ms)
+  Rendered locations/new.html.erb within layouts/application (49.0ms)
+Completed 200 OK in 255ms (Views: 228.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/locations" for 127.0.0.1 at 2017-07-10 21:23:42 -0500
+Processing by LocationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9A3+43Xl39Xb4wumHz3njzH4F3/N0Dv6XcHBxRdWIKDZSoPIP7GN2NZJHu6WmU/768M49w0uQChW/aOR/QF16w==", "location"=>{"latitude"=>"21.8139438", "longitude"=>"-99.2375963", "address"=>"Huasteca Potosina", "description"=>"Unión Ganadera Regional de la Huasteca Potosina", "title"=>"Potosina"}, "commit"=>"Create Location"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[32mINSERT INTO "locations" ("latitude", "longitude", "address", "description", "title", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["latitude", 21.8139438], ["longitude", -99.2375963], ["address", "Huasteca Potosina"], ["description", "Unión Ganadera Regional de la Huasteca Potosina"], ["title", "Potosina"], ["created_at", "2017-07-11 02:23:42.717464"], ["updated_at", "2017-07-11 02:23:42.717464"]]
+  [1m[35m (80.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/locations/3
+Completed 302 Found in 108ms (ActiveRecord: 84.0ms)
+
+
+Started GET "/locations/3" for 127.0.0.1 at 2017-07-10 21:23:42 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 228ms (Views: 178.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:31:47 -0500
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 1216ms (Views: 1153.0ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:34:01 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (4.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 21339ms (Views: 21288.7ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:35:29 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 362ms (Views: 323.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:37:20 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (44.3ms)
+Completed 500 Internal Server Error in 232ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (wrong number of arguments (given 1, expected 0)):
+    17:   <tbody>
+    18:     <% @locations.each do |location| %>
+    19:       <tr>
+    20:         <td><%= location.latitude placeholde="Latitud" %></td>
+    21:         <td><%= location.longitude %></td>
+    22:         <td><%= location.address %></td>
+    23:         <td><%= location.description %></td>
+  
+app/views/locations/index.html.erb:20:in `block in _app_views_locations_index_html_erb___926250109_55365900'
+app/views/locations/index.html.erb:18:in `_app_views_locations_index_html_erb___926250109_55365900'
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:40:53 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 400ms (Views: 358.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:40:54 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 356ms (Views: 310.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:42:00 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 328ms (Views: 295.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:43:12 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 338ms (Views: 305.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:45:59 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.5ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 352ms (Views: 317.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-10 21:46:18 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 332ms (Views: 298.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-07-11 23:50:10 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (65.0ms)
+Completed 200 OK in 4525ms (Views: 4402.3ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/locations/2/edit" for 127.0.0.1 at 2017-07-11 23:50:56 -0500
+Processing by LocationsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/edit.html.erb within layouts/application
+  Rendered locations/_form.html.erb (195.8ms)
+  Rendered locations/edit.html.erb within layouts/application (225.8ms)
+Completed 200 OK in 669ms (Views: 602.2ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/locations/2" for 127.0.0.1 at 2017-07-11 23:51:39 -0500
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"fES4JdWfK1JLQlbz0y9JrjkisyGpV4jGnuofZdJ6UypjurBRS2pzE4eXkW5i1t1lz//wdf4RJ92/TQFtkB4J3A==", "location"=>{"latitude"=>"21.1576992", "longitude"=>"-100.9374476", "address"=>"Centro 37800 Dolores Hidalgo Cuna de la Independencia Nacional, Gto.", "description"=>"Casa de visitas, oficial de Dolores Hidalgo\r\n", "title"=>"Casa de visitas, Dolores Hgo."}, "commit"=>"Update Location", "id"=>"2"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[33mUPDATE "locations" SET "description" = ?, "updated_at" = ? WHERE "locations"."id" = ?[0m  [["description", "Casa de visitas, oficial de Dolores Hidalgo\r\n"], ["updated_at", "2017-07-12 04:51:40.065882"], ["id", 2]]
+  [1m[35m (149.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/locations/2
+Completed 302 Found in 183ms (ActiveRecord: 152.5ms)
+
+
+Started GET "/locations/2" for 127.0.0.1 at 2017-07-11 23:51:40 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 523ms (Views: 447.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-11 23:51:50 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 461ms (Views: 416.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations/2" for 127.0.0.1 at 2017-07-11 23:51:53 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 409ms (Views: 376.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations/1/edit" for 127.0.0.1 at 2017-07-11 23:52:09 -0500
+Processing by LocationsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering locations/edit.html.erb within layouts/application
+  Rendered locations/_form.html.erb (8.0ms)
+  Rendered locations/edit.html.erb within layouts/application (38.0ms)
+Completed 200 OK in 482ms (Views: 442.7ms | ActiveRecord: 0.0ms)
+
+
+Started PATCH "/locations/1" for 127.0.0.1 at 2017-07-11 23:52:22 -0500
+Processing by LocationsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ympOXA815/pmpGjoJUhO4uF14VKh4dxuhFyBYF8XGiN03QSgoUWVgR2L1d1fNvakQ30CYqqdDN4k32/rsZnX/A==", "location"=>{"latitude"=>"21.1591122", "longitude"=>"-100.9665343", "address"=>"Dolores Hidalgo", "description"=>"Cuna de la independencia Nacional", "title"=>"Dolores Hgo"}, "commit"=>"Update Location", "id"=>"1"}
+  [1m[36mLocation Load (2.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (3.0ms)[0m  [1m[33mUPDATE "locations" SET "description" = ?, "updated_at" = ? WHERE "locations"."id" = ?[0m  [["description", "Cuna de la independencia Nacional"], ["updated_at", "2017-07-12 04:52:22.440980"], ["id", 1]]
+  [1m[35m (106.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/locations/1
+Completed 302 Found in 149ms (ActiveRecord: 111.7ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2017-07-11 23:52:22 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 405ms (Views: 369.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-11 23:52:26 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 447ms (Views: 416.0ms | ActiveRecord: 1.0ms)
+
+
+Started DELETE "/locations/3" for 127.0.0.1 at 2017-07-11 23:53:06 -0500
+Processing by LocationsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"Ol9ka9tGLXSt4TgRkiYqAWHy4S14ORCzya3QD12zRHf+9cJgyZ0U3o8XuVBLNO307YOjMdMMiGu4ZQwtw2IaJg==", "id"=>"3"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (4.0ms)[0m  [1m[31mDELETE FROM "locations" WHERE "locations"."id" = ?[0m  [["id", 3]]
+  [1m[35m (189.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/locations
+Completed 302 Found in 219ms (ActiveRecord: 193.6ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-11 23:53:06 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 445ms (Views: 404.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-11 23:55:59 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.3ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 430ms (Views: 399.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-12 00:02:14 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 501ms (Views: 466.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-12 00:05:21 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 443ms (Views: 408.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2017-07-12 00:07:58 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 487ms (Views: 445.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-12 00:08:03 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 372ms (Views: 341.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-12 00:08:59 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 443ms (Views: 400.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/locations/1" for 127.0.0.1 at 2017-07-12 00:09:12 -0500
+Processing by LocationsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLocation Load (0.0ms)[0m  [1m[34mSELECT  "locations".* FROM "locations" WHERE "locations"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering locations/show.html.erb within layouts/application
+  Rendered locations/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 437ms (Views: 401.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/locations" for 127.0.0.1 at 2017-07-12 00:09:17 -0500
+Processing by LocationsController#index as HTML
+  Rendering locations/index.html.erb within layouts/application
+  [1m[36mLocation Load (1.0ms)[0m  [1m[34mSELECT "locations".* FROM "locations"[0m
+  Rendered locations/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 359ms (Views: 327.3ms | ActiveRecord: 1.0ms)
+
+
